@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KafeSimulator
 {
-    public class Müsteri
+    public class Musteri
     {
         public Siparis Siparis { get; set; }
     }

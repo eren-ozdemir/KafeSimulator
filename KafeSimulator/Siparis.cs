@@ -10,5 +10,10 @@ namespace KafeSimulator
     {
         public string Ad { get; set; }
         public int HazirlanmaSuresi { get; set; }
+
+        public override string ToString()
+        {
+            return Ad + " (" + HazirlanmaSuresi + ")";
+        }
     }
 }

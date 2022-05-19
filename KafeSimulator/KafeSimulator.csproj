@@ -55,7 +55,7 @@
       <DependentUpon>KafeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Konum.cs" />
-    <Compile Include="Müsteri.cs" />
+    <Compile Include="Musteri.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Siparis.cs" />

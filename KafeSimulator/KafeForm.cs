@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,35 +10,57 @@ namespace KafeSimulator
 {
     public partial class KafeForm : Form
     {
-        List<BackgroundWorker> backgroundWorkerList = new List<BackgroundWorker>();
+        Random rnd = new Random();
+        Size siparisliBoyut = new Size(90, 90);
+        Size siparissizBoyut = new Size(90, 35);
+        List<BackgroundWorker> backgroundWorkerList = new List<BackgroundWorker>() { new BackgroundWorker(), new BackgroundWorker(), new BackgroundWorker(), new BackgroundWorker(), new BackgroundWorker(), new BackgroundWorker() };
+        List<Siparis> icecekler = new List<Siparis>()
+        {
+            new Siparis(){Ad = "Caffè Latte", HazirlanmaSuresi = 1},
+            new Siparis(){Ad = "Cappuccino", HazirlanmaSuresi = 1},
+            new Siparis(){Ad = "Iced Cappuccino", HazirlanmaSuresi = 1},
+            new Siparis(){Ad = "Espresso", HazirlanmaSuresi = 1},
+            new Siparis(){Ad = "Espresso Macchiato", HazirlanmaSuresi = 10},
+            new Siparis(){Ad = "Cold Brew", HazirlanmaSuresi = 1},
+            new Siparis(){Ad = "Türk Kahvesi", HazirlanmaSuresi = 1},
+            new Siparis(){Ad = "Cool Lime", HazirlanmaSuresi = 10},
+            new Siparis(){Ad = "Chai Tea Latte", HazirlanmaSuresi = 10},
+            new Siparis(){Ad = "Iced Black Tea", HazirlanmaSuresi = 10},
+        };
         public KafeForm()
         {
             InitializeComponent();
-            flpCalisanBeklemeAlani.Controls.Add(CalisanOlustur(1));
+            pnlKasa1.Controls.Add(CalisanOlustur(1));
+            pnlKasa2.Controls.Add(CalisanOlustur(2));
+            pnlKasa3.Controls.Add(CalisanOlustur(3));
+            flpCalisanBeklemeAlani.Controls.Add(CalisanOlustur(4));
+            flpCalisanBeklemeAlani.Controls.Add(CalisanOlustur(5));
         }
 
-        Panel CalisanOlustur( byte num, string siparis = "")
+        #region Çalışan Mototları
+        Panel CalisanOlustur(byte num, Siparis siparis = null)
         {
-            bool siparisVarMi = siparis != "";
-            Size size = siparisVarMi ? new Size(90, 90) : new Size(90, 35);
+            bool siparisVarMi = siparis != null;
+            Size size = siparisVarMi ? siparisliBoyut : siparissizBoyut;
             Panel flpCalisan = new Panel()
             {
-                Size = size,
                 Name = "pnlCalisan" + num,
+                Size = size,
                 Tag = num
             };
             ProgressBar pBarSiparis = new ProgressBar()
             {
+                Name = "pBar" + num,
                 Size = new Size(90, 10),
                 Dock = DockStyle.Top,
-                Name = "pBar" + num
             };
             Label lblSiparis = new Label()
             {
+                Name = "lblCalisan" + num,
                 Size = new Size(90, 45),
-                Location = new Point(0,10),
+                Location = new Point(0, 10),
                 TextAlign = ContentAlignment.MiddleCenter,
-                Text = siparis
+                Text = siparis?.ToString()
             };
             Button btnCalisan = new Button()
             {
@@ -58,9 +77,9 @@ namespace KafeSimulator
             worker.DoWork += Worker_DoWork;
             worker.ProgressChanged += Worker_ProgressChanged;
             if (siparisVarMi)
-                backgroundWorkerList[num-1].RunWorkerAsync(2000);
+                backgroundWorkerList[num].RunWorkerAsync(2000);
             else
-                backgroundWorkerList.Add(worker);
+                backgroundWorkerList[num] = worker;
 
 
             flpCalisan.Controls.Add(pBarSiparis);
@@ -71,8 +90,13 @@ namespace KafeSimulator
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            ProgressBar pBar = flpMutfak.Controls["pnlCalisan1"].Controls["pBar1"] as ProgressBar;
+            BackgroundWorker worker = sender as BackgroundWorker;
+            int i = backgroundWorkerList.FindIndex(w => w == worker);
+            Panel calisan = flpMutfak.Controls["pnlCalisan" + i] as Panel;
+            ProgressBar pBar = calisan.Controls["pBar" + i] as ProgressBar;
             pBar.Value = e.ProgressPercentage;
+            if (pBar.Value == 100)
+                CalisandakiSiparisiSil(calisan);
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
@@ -90,21 +114,104 @@ namespace KafeSimulator
                 Thread.Sleep(arg / 100);
                 worker.ReportProgress(i);
             }
-            MessageBox.Show("Sipariş hazır.", "Sipariş Tamamlandı", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+
             return result;
         }
 
-        void SiparisAl()
+        void CalisanaSiparisEkle(Panel pnl, Siparis siparis)
         {
-            Panel calisan = (Panel)flpCalisanBeklemeAlani.Controls[0];
-            Panel siparisli = CalisanOlustur((byte)calisan.Tag, "Kahve");
-            flpCalisanBeklemeAlani.Controls.Remove(calisan);
-            flpMutfak.Controls.Add(siparisli);
+            pnl.Size = siparisliBoyut;
+            ProgressBar pb = pnl.Controls["pBar" + (byte)pnl.Tag] as ProgressBar;
+            Label lbl = pnl.Controls["lblCalisan" + (byte)pnl.Tag] as Label;
+            pb.Visible = true;
+            lbl.Text = siparis.ToString();
+            lbl.Visible = true;
+            lbl.Tag = siparis;
+            pnl.Parent = flpMutfak;
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        void CalisandakiSiparisiSil(Panel pnl)
         {
-            SiparisAl();
+            pnl.Size = siparissizBoyut;
+            pnl.Parent = flpCalisanBeklemeAlani;
+
+            foreach (Control item in pnl.Controls)
+            {
+                if (!(item is Button))
+                    item.Visible = false;
+            }
+        }
+        void SiparisAl(Panel pnlSira)
+        {
+            if (flpCalisanBeklemeAlani.Controls.Count > 0)
+            {
+                Panel calisan = (Panel)flpCalisanBeklemeAlani.Controls[0];
+                Button btnMusteri = pnlSira.Controls[0] as Button;
+                Siparis siparis = (btnMusteri.Tag as Musteri).Siparis;
+
+                CalisanaSiparisEkle(calisan, siparis);
+                btnMusteri.Parent = flpSiparisBeklemeAlani;
+            }
+        }
+
+
+        #endregion
+
+        #region Müşteri Metotları
+        Button MusteriOlustur(byte num)
+        {
+            Musteri musteri = new Musteri()
+            {
+                Siparis = icecekler[rnd.Next(icecekler.Count)]
+            };
+
+            Button btn = new Button()
+            {
+                Text = "Müşteri " + num + "\n" + musteri.Siparis.Ad,
+                Tag = musteri,
+                Size = new Size(150, 90)
+            };
+
+            return btn;
+        }
+        #endregion
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            for (byte i = 0; i < 5; i++)
+                flpSira.Controls.Add(MusteriOlustur(i));
+        }
+
+        void MusteriYerlestir()
+        {
+            if (flpSira.Controls.Count > 0)
+            {
+                if (pnlSira1.Controls.Count == 0)
+                    flpSira.Controls[0].Parent = pnlSira1;
+                else if (pnlSira2.Controls.Count == 0)
+                    flpSira.Controls[0].Parent = pnlSira2;
+                else if (pnlSira3.Controls.Count == 0)
+                    flpSira.Controls[0].Parent = pnlSira3;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MusteriYerlestir();
+        }
+
+        private void pnl_MusteriEklendi(object sender, ControlEventArgs e)
+        {
+            Task.Delay(1000).Wait();
+            SiparisAl((Panel)sender);
+        }
+
+        private void flpMutfak_ControlAdded(object sender, ControlEventArgs e)
+        {
+            Panel calisan = (Panel)flpMutfak.Controls[flpMutfak.Controls.Count - 1];
+            Label lbl = (Label)calisan.Controls.Find("lblCalisan" + (byte)calisan.Tag, true)[0];
+            Siparis siparis = (Siparis)lbl.Tag;
+            backgroundWorkerList[(byte)calisan.Tag].RunWorkerAsync(siparis.HazirlanmaSuresi * 1000);
         }
     }
 }
