@@ -28,28 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.pnlKasa3 = new System.Windows.Forms.Panel();
             this.pnlKasa2 = new System.Windows.Forms.Panel();
             this.pnlKasa1 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.flpMutfak = new System.Windows.Forms.FlowLayoutPanel();
-            this.button5 = new System.Windows.Forms.Button();
             this.flpCalisanBeklemeAlani = new System.Windows.Forms.FlowLayoutPanel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.flpSira = new System.Windows.Forms.FlowLayoutPanel();
-            this.pnlSira1 = new System.Windows.Forms.Panel();
-            this.pnlSira2 = new System.Windows.Forms.Panel();
-            this.pnlSira3 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.pnlSiralar = new System.Windows.Forms.Panel();
             this.flpSiparisBeklemeAlani = new System.Windows.Forms.FlowLayoutPanel();
-            this.label6 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.pnlSira3 = new System.Windows.Forms.Panel();
+            this.flpSira = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlSira2 = new System.Windows.Forms.Panel();
+            this.pnlSira1 = new System.Windows.Forms.Panel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.pnlSiralar.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -67,6 +70,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1200, 234);
             this.panel1.TabIndex = 0;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(936, 9);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(58, 20);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Mutfak";
             // 
             // pnlKasa3
             // 
@@ -89,17 +103,6 @@
             this.pnlKasa1.Size = new System.Drawing.Size(130, 66);
             this.pnlKasa1.TabIndex = 5;
             // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(871, 3);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(123, 20);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Sipariş Bekleme";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -120,16 +123,6 @@
             this.flpMutfak.TabIndex = 2;
             this.flpMutfak.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.flpMutfak_ControlAdded);
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(480, 174);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(92, 52);
-            this.button5.TabIndex = 0;
-            this.button5.Text = "Müşteri Oluştur";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
             // flpCalisanBeklemeAlani
             // 
             this.flpCalisanBeklemeAlani.BackColor = System.Drawing.Color.Teal;
@@ -138,6 +131,27 @@
             this.flpCalisanBeklemeAlani.Name = "flpCalisanBeklemeAlani";
             this.flpCalisanBeklemeAlani.Size = new System.Drawing.Size(209, 234);
             this.flpCalisanBeklemeAlani.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(871, 3);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(123, 20);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Sipariş Bekleme";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(498, 160);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(92, 52);
+            this.button5.TabIndex = 0;
+            this.button5.Text = "Müşteri Oluştur";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // label3
             // 
@@ -166,69 +180,24 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Kasa 1";
             // 
-            // panel2
+            // pnlSiralar
             // 
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.flpSiparisBeklemeAlani);
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.button5);
-            this.panel2.Controls.Add(this.pnlSira3);
-            this.panel2.Controls.Add(this.flpSira);
-            this.panel2.Controls.Add(this.pnlSira2);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.pnlSira1);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 234);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1200, 360);
-            this.panel2.TabIndex = 1;
-            // 
-            // flpSira
-            // 
-            this.flpSira.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flpSira.Location = new System.Drawing.Point(0, 264);
-            this.flpSira.Name = "flpSira";
-            this.flpSira.Size = new System.Drawing.Size(1200, 96);
-            this.flpSira.TabIndex = 5;
-            // 
-            // pnlSira1
-            // 
-            this.pnlSira1.Location = new System.Drawing.Point(323, 26);
-            this.pnlSira1.Margin = new System.Windows.Forms.Padding(0);
-            this.pnlSira1.Name = "pnlSira1";
-            this.pnlSira1.Size = new System.Drawing.Size(153, 93);
-            this.pnlSira1.TabIndex = 5;
-            this.pnlSira1.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.pnl_MusteriEklendi);
-            // 
-            // pnlSira2
-            // 
-            this.pnlSira2.Location = new System.Drawing.Point(517, 26);
-            this.pnlSira2.Margin = new System.Windows.Forms.Padding(0);
-            this.pnlSira2.Name = "pnlSira2";
-            this.pnlSira2.Size = new System.Drawing.Size(153, 93);
-            this.pnlSira2.TabIndex = 5;
-            this.pnlSira2.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.pnl_MusteriEklendi);
-            // 
-            // pnlSira3
-            // 
-            this.pnlSira3.Location = new System.Drawing.Point(694, 26);
-            this.pnlSira3.Margin = new System.Windows.Forms.Padding(0);
-            this.pnlSira3.Name = "pnlSira3";
-            this.pnlSira3.Size = new System.Drawing.Size(153, 93);
-            this.pnlSira3.TabIndex = 5;
-            this.pnlSira3.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.pnl_MusteriEklendi);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(578, 174);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(92, 52);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Yerleştir";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.pnlSiralar.Controls.Add(this.label5);
+            this.pnlSiralar.Controls.Add(this.flpSiparisBeklemeAlani);
+            this.pnlSiralar.Controls.Add(this.button1);
+            this.pnlSiralar.Controls.Add(this.button5);
+            this.pnlSiralar.Controls.Add(this.pnlSira3);
+            this.pnlSiralar.Controls.Add(this.flpSira);
+            this.pnlSiralar.Controls.Add(this.pnlSira2);
+            this.pnlSiralar.Controls.Add(this.label3);
+            this.pnlSiralar.Controls.Add(this.pnlSira1);
+            this.pnlSiralar.Controls.Add(this.label1);
+            this.pnlSiralar.Controls.Add(this.label2);
+            this.pnlSiralar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlSiralar.Location = new System.Drawing.Point(0, 234);
+            this.pnlSiralar.Name = "pnlSiralar";
+            this.pnlSiralar.Size = new System.Drawing.Size(1200, 360);
+            this.pnlSiralar.TabIndex = 1;
             // 
             // flpSiparisBeklemeAlani
             // 
@@ -240,23 +209,57 @@
             this.flpSiparisBeklemeAlani.Size = new System.Drawing.Size(200, 264);
             this.flpSiparisBeklemeAlani.TabIndex = 7;
             // 
-            // label6
+            // button1
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(936, 9);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(58, 20);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Mutfak";
+            this.button1.Location = new System.Drawing.Point(596, 160);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(92, 52);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Yerleştir";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // pnlSira3
+            // 
+            this.pnlSira3.Location = new System.Drawing.Point(694, 26);
+            this.pnlSira3.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlSira3.Name = "pnlSira3";
+            this.pnlSira3.Size = new System.Drawing.Size(153, 93);
+            this.pnlSira3.TabIndex = 5;
+            this.pnlSira3.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.pnl_MusteriEklendi);
+            // 
+            // flpSira
+            // 
+            this.flpSira.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.flpSira.Location = new System.Drawing.Point(0, 264);
+            this.flpSira.Name = "flpSira";
+            this.flpSira.Size = new System.Drawing.Size(1200, 96);
+            this.flpSira.TabIndex = 5;
+            // 
+            // pnlSira2
+            // 
+            this.pnlSira2.Location = new System.Drawing.Point(517, 26);
+            this.pnlSira2.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlSira2.Name = "pnlSira2";
+            this.pnlSira2.Size = new System.Drawing.Size(153, 93);
+            this.pnlSira2.TabIndex = 5;
+            this.pnlSira2.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.pnl_MusteriEklendi);
+            // 
+            // pnlSira1
+            // 
+            this.pnlSira1.Location = new System.Drawing.Point(323, 26);
+            this.pnlSira1.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlSira1.Name = "pnlSira1";
+            this.pnlSira1.Size = new System.Drawing.Size(153, 93);
+            this.pnlSira1.TabIndex = 5;
+            this.pnlSira1.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.pnl_MusteriEklendi);
             // 
             // KafeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1200, 594);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.pnlSiralar);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -264,8 +267,8 @@
             this.Text = "Kafe";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.pnlSiralar.ResumeLayout(false);
+            this.pnlSiralar.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -280,7 +283,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel pnlSiralar;
         private System.Windows.Forms.Panel pnlKasa3;
         private System.Windows.Forms.Panel pnlKasa2;
         private System.Windows.Forms.Panel pnlKasa1;
@@ -292,6 +295,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.FlowLayoutPanel flpSiparisBeklemeAlani;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 

@@ -14,17 +14,18 @@ namespace KafeSimulator
         Size siparisliBoyut = new Size(90, 90);
         Size siparissizBoyut = new Size(90, 35);
         List<BackgroundWorker> backgroundWorkerList = new List<BackgroundWorker>() { new BackgroundWorker(), new BackgroundWorker(), new BackgroundWorker(), new BackgroundWorker(), new BackgroundWorker(), new BackgroundWorker() };
+        List<BackgroundWorker> kasaBackgroundWorkerList = new List<BackgroundWorker>() { new BackgroundWorker(), new BackgroundWorker(), new BackgroundWorker(), new BackgroundWorker() };
         List<Siparis> icecekler = new List<Siparis>()
         {
-            new Siparis(){Ad = "Caffè Latte", HazirlanmaSuresi = 1},
-            new Siparis(){Ad = "Cappuccino", HazirlanmaSuresi = 1},
-            new Siparis(){Ad = "Iced Cappuccino", HazirlanmaSuresi = 1},
-            new Siparis(){Ad = "Espresso", HazirlanmaSuresi = 1},
+            new Siparis(){Ad = "Caffè Latte", HazirlanmaSuresi = 10},
+            new Siparis(){Ad = "Cappuccino", HazirlanmaSuresi = 5},
+            new Siparis(){Ad = "Iced Cappuccino", HazirlanmaSuresi = 5},
+            new Siparis(){Ad = "Espresso", HazirlanmaSuresi = 7},
             new Siparis(){Ad = "Espresso Macchiato", HazirlanmaSuresi = 10},
-            new Siparis(){Ad = "Cold Brew", HazirlanmaSuresi = 1},
-            new Siparis(){Ad = "Türk Kahvesi", HazirlanmaSuresi = 1},
+            new Siparis(){Ad = "Cold Brew", HazirlanmaSuresi = 8},
+            new Siparis(){Ad = "Türk Kahvesi", HazirlanmaSuresi = 6},
             new Siparis(){Ad = "Cool Lime", HazirlanmaSuresi = 10},
-            new Siparis(){Ad = "Chai Tea Latte", HazirlanmaSuresi = 10},
+            new Siparis(){Ad = "Chai Tea Latte", HazirlanmaSuresi = 5},
             new Siparis(){Ad = "Iced Black Tea", HazirlanmaSuresi = 10},
         };
         public KafeForm()
@@ -94,9 +95,18 @@ namespace KafeSimulator
             int i = backgroundWorkerList.FindIndex(w => w == worker);
             Panel calisan = flpMutfak.Controls["pnlCalisan" + i] as Panel;
             ProgressBar pBar = calisan.Controls["pBar" + i] as ProgressBar;
+            Label lbl = calisan.Controls["lblCalisan" + i] as Label;
             pBar.Value = e.ProgressPercentage;
             if (pBar.Value == 100)
+            {
+                Siparis siparis = lbl.Tag as Siparis;
+                foreach (Control item in flpSiparisBeklemeAlani.Controls)
+                {
+                    if ((item.Tag as Musteri).Siparis == siparis)
+                        flpSiparisBeklemeAlani.Controls.Remove(item);
+                }
                 CalisandakiSiparisiSil(calisan);
+            }
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
@@ -153,8 +163,6 @@ namespace KafeSimulator
                 btnMusteri.Parent = flpSiparisBeklemeAlani;
             }
         }
-
-
         #endregion
 
         #region Müşteri Metotları
@@ -174,7 +182,6 @@ namespace KafeSimulator
 
             return btn;
         }
-        #endregion
 
         private void button5_Click(object sender, EventArgs e)
         {
@@ -202,9 +209,41 @@ namespace KafeSimulator
 
         private void pnl_MusteriEklendi(object sender, ControlEventArgs e)
         {
-            Task.Delay(1000).Wait();
-            SiparisAl((Panel)sender);
+            Panel pnl = sender as Panel;
+            string numStr = pnl.Name.Remove(0, "pnlSira".Length);
+            int num = Convert.ToInt32(numStr);
+            BackgroundWorker backgroundWorker = kasaBackgroundWorkerList[num];
+            backgroundWorker.DoWork += BackgroundWorker_DoWork;
+            backgroundWorker.RunWorkerAsync(2000);
+            backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
+
+            //SiparisAl((Panel)sender);
         }
+
+        private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+            int i = kasaBackgroundWorkerList.FindIndex(w => w == worker);
+            Panel pnlSira = pnlSiralar.Controls["pnlSira" + i] as Panel;
+            SiparisAl(pnlSira);
+        }
+
+        private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+            int i = kasaBackgroundWorkerList.FindIndex(w => w == worker);
+            Panel pnlSira = pnlSiralar.Controls["pnlSira" + i] as Panel;
+            int arg = (int)e.Argument;
+            e.Result = WorkerMethod(worker, arg);
+        }
+
+        private object WorkerMethod(BackgroundWorker worker, int arg)
+        {
+            int result = 0;
+            Thread.Sleep(2000);
+            return result;
+        }
+        #endregion
 
         private void flpMutfak_ControlAdded(object sender, ControlEventArgs e)
         {
