@@ -51,8 +51,9 @@
             this.tmrKasa2 = new System.Windows.Forms.Timer(this.components);
             this.tmrKasa3 = new System.Windows.Forms.Timer(this.components);
             this.tmrMusteriEkle = new System.Windows.Forms.Timer(this.components);
-            this.tmrCalisan4 = new System.Windows.Forms.Timer(this.components);
-            this.tmrCalisan5 = new System.Windows.Forms.Timer(this.components);
+            this.tmrCalisan1 = new System.Windows.Forms.Timer(this.components);
+            this.tmrCalisan2 = new System.Windows.Forms.Timer(this.components);
+            this.tmrSiparisKontrol = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.pnlSiralar.SuspendLayout();
             this.SuspendLayout();
@@ -78,7 +79,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(936, 9);
+            this.label6.Location = new System.Drawing.Point(732, 9);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(58, 20);
             this.label6.TabIndex = 0;
@@ -119,9 +120,9 @@
             this.flpMutfak.BackColor = System.Drawing.Color.LightSalmon;
             this.flpMutfak.Dock = System.Windows.Forms.DockStyle.Right;
             this.flpMutfak.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flpMutfak.Location = new System.Drawing.Point(998, 0);
+            this.flpMutfak.Location = new System.Drawing.Point(810, 0);
             this.flpMutfak.Name = "flpMutfak";
-            this.flpMutfak.Size = new System.Drawing.Size(200, 234);
+            this.flpMutfak.Size = new System.Drawing.Size(388, 234);
             this.flpMutfak.TabIndex = 2;
             this.flpMutfak.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.flpMutfak_ControlAdded);
             // 
@@ -139,7 +140,7 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(888, 17);
+            this.label5.Location = new System.Drawing.Point(698, 210);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(106, 16);
             this.label5.TabIndex = 0;
@@ -195,9 +196,9 @@
             this.flpSiparisBeklemeAlani.BackColor = System.Drawing.Color.Crimson;
             this.flpSiparisBeklemeAlani.Dock = System.Windows.Forms.DockStyle.Right;
             this.flpSiparisBeklemeAlani.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flpSiparisBeklemeAlani.Location = new System.Drawing.Point(998, 0);
+            this.flpSiparisBeklemeAlani.Location = new System.Drawing.Point(810, 0);
             this.flpSiparisBeklemeAlani.Name = "flpSiparisBeklemeAlani";
-            this.flpSiparisBeklemeAlani.Size = new System.Drawing.Size(200, 324);
+            this.flpSiparisBeklemeAlani.Size = new System.Drawing.Size(388, 324);
             this.flpSiparisBeklemeAlani.TabIndex = 7;
             // 
             // pnlSira3
@@ -255,13 +256,20 @@
             // 
             this.tmrMusteriEkle.Tick += new System.EventHandler(this.tmrMusteriEkle_Tick);
             // 
-            // tmrCalisan4
+            // tmrCalisan1
             // 
-            this.tmrCalisan4.Interval = 2000;
+            this.tmrCalisan1.Interval = 2000;
+            this.tmrCalisan1.Tick += new System.EventHandler(this.tmrCalisan1_Tick);
             // 
-            // tmrCalisan5
+            // tmrCalisan2
             // 
-            this.tmrCalisan5.Interval = 2000;
+            this.tmrCalisan2.Interval = 2000;
+            this.tmrCalisan2.Tick += new System.EventHandler(this.tmrCalisan2_Tick);
+            // 
+            // tmrSiparisKontrol
+            // 
+            this.tmrSiparisKontrol.Interval = 1000;
+            this.tmrSiparisKontrol.Tick += new System.EventHandler(this.tmrSiparisKontrol_Tick);
             // 
             // KafeForm
             // 
@@ -306,8 +314,9 @@
         private System.Windows.Forms.Timer tmrKasa2;
         private System.Windows.Forms.Timer tmrKasa3;
         private System.Windows.Forms.Timer tmrMusteriEkle;
-        private System.Windows.Forms.Timer tmrCalisan4;
-        private System.Windows.Forms.Timer tmrCalisan5;
+        private System.Windows.Forms.Timer tmrCalisan1;
+        private System.Windows.Forms.Timer tmrCalisan2;
+        private System.Windows.Forms.Timer tmrSiparisKontrol;
     }
 }
 

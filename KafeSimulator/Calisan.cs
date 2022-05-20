@@ -10,6 +10,8 @@ namespace KafeSimulator
     {
         public Konum Konum { get; set; }
 
+        public Siparis Siparis { get; set; }
+
         public void SiparisAl()
         {
 
