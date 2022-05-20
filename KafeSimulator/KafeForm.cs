@@ -77,6 +77,7 @@ namespace KafeSimulator
             worker.WorkerReportsProgress = true;
             worker.DoWork += Worker_DoWork;
             worker.ProgressChanged += Worker_ProgressChanged;
+            worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             if (siparisVarMi)
                 backgroundWorkerList[num].RunWorkerAsync(2000);
             else
@@ -87,6 +88,18 @@ namespace KafeSimulator
             flpCalisan.Controls.Add(btnCalisan);
             flpCalisan.Controls.Add(lblSiparis);
             return flpCalisan;
+        }
+
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+            int i = backgroundWorkerList.IndexOf(worker);
+            if (pnlSira1.Controls.Count != 0)
+                SiparisAl(pnlSira1);
+            else if (pnlSira2.Controls.Count != 0)
+                SiparisAl(pnlSira2);
+            else if (pnlSira3.Controls.Count != 0)
+                SiparisAl(pnlSira3);
         }
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -165,7 +178,6 @@ namespace KafeSimulator
         }
         #endregion
 
-        #region Müşteri Metotları
         Button MusteriOlustur(byte num)
         {
             Musteri musteri = new Musteri()
@@ -243,7 +255,6 @@ namespace KafeSimulator
             Thread.Sleep(2000);
             return result;
         }
-        #endregion
 
         private void flpMutfak_ControlAdded(object sender, ControlEventArgs e)
         {
@@ -251,6 +262,11 @@ namespace KafeSimulator
             Label lbl = (Label)calisan.Controls.Find("lblCalisan" + (byte)calisan.Tag, true)[0];
             Siparis siparis = (Siparis)lbl.Tag;
             backgroundWorkerList[(byte)calisan.Tag].RunWorkerAsync(siparis.HazirlanmaSuresi * 1000);
+        }
+
+        private void flpCalisanBeklemeAlani_ControlAdded(object sender, ControlEventArgs e)
+        {
+
         }
     }
 }
