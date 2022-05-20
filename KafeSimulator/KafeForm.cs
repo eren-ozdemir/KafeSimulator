@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IronXL;
 
 namespace KafeSimulator
 {
@@ -16,7 +18,7 @@ namespace KafeSimulator
         int musteriSayaci = 1;
         int siparisSayaci = 1;
         Size siparisliBoyut = new Size(150, 90);
-        Size siparissizBoyut = new Size(90, 35);
+        Size siparissizBoyut = new Size(150, 35);
         
         BindingList<Siparis> bekleyenSiparisler = new BindingList<Siparis>();
         BindingList<Siparis> tumSiparisler = new BindingList<Siparis>();
@@ -57,7 +59,7 @@ namespace KafeSimulator
             {
                 Name = "pnlCalisan" + num,
                 Size = size,
-                Tag = num
+                Tag = num,
             };
             ProgressBar pBarSiparis = new ProgressBar()
             {
@@ -79,7 +81,8 @@ namespace KafeSimulator
                 Size = new Size(90, 35),
                 Dock = DockStyle.Bottom,
                 Text = "Çalışan " + num,
-                Tag = num
+                Tag = num,
+                FlatStyle = FlatStyle.Flat,
             };
 
             flpCalisan.Controls.Add(pBarSiparis);
@@ -231,7 +234,8 @@ namespace KafeSimulator
             {
                 Text = "Müşteri " + num + "\n" + musteri.Siparis.Ad,
                 Tag = musteri,
-                Size = new Size(150, 90)
+                Size = new Size(150, 90),
+                FlatStyle = FlatStyle.Flat,
             };
 
             return btn;
@@ -272,6 +276,25 @@ namespace KafeSimulator
         {
             kasaStartTime2 = DateTime.Now;
             tmrKasa2.Start();
+        }
+
+        private void KafeForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            var newXLFile = WorkBook.Create(ExcelFileFormat.XLSX);
+            var newWorkSheet = newXLFile.CreateWorkSheet("data");
+
+            for (int i = 1; i <= tumSiparisler.Count; i++)
+            {
+                newWorkSheet["A" + i].Value = tumSiparisler[i-1].Ad;
+                newWorkSheet["B" + i].Value = tumSiparisler[i-1].HazirlanmaSuresi;
+            }
+
+            newXLFile.SaveAs("data.xlsx");
+        }
+
+        private void pnlSiralar_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
         private void pnlSira3_ControlAdded(object sender, ControlEventArgs e)
