@@ -24,16 +24,16 @@ namespace KafeSimulator
         BindingList<Siparis> tumSiparisler = new BindingList<Siparis>();
         List<Siparis> icecekler = new List<Siparis>()
         {
-            new Siparis(){Ad = "Caffè Latte", HazirlanmaSuresi = 10},
+            new Siparis(){Ad = "Caffè Latte", HazirlanmaSuresi = 9},
             new Siparis(){Ad = "Cappuccino", HazirlanmaSuresi = 5},
             new Siparis(){Ad = "Iced Cappuccino", HazirlanmaSuresi = 5},
             new Siparis(){Ad = "Espresso", HazirlanmaSuresi = 7},
-            new Siparis(){Ad = "Espresso Macchiato", HazirlanmaSuresi = 10},
+            new Siparis(){Ad = "Espresso Macchiato", HazirlanmaSuresi = 9},
             new Siparis(){Ad = "Cold Brew", HazirlanmaSuresi = 8},
             new Siparis(){Ad = "Türk Kahvesi", HazirlanmaSuresi = 6},
-            new Siparis(){Ad = "Cool Lime", HazirlanmaSuresi = 10},
+            new Siparis(){Ad = "Cool Lime", HazirlanmaSuresi = 9},
             new Siparis(){Ad = "Chai Tea Latte", HazirlanmaSuresi = 5},
-            new Siparis(){Ad = "Iced Black Tea", HazirlanmaSuresi = 10},
+            new Siparis(){Ad = "Iced Black Tea", HazirlanmaSuresi = 9},
         };
         public KafeForm()
         {
@@ -221,7 +221,7 @@ namespace KafeSimulator
             CalisanlaraSiparisVer();
         }
 
-
+        
         #region Müsteri sıra yönetimi
         Button MusteriOlustur(int num)
         {
@@ -241,8 +241,6 @@ namespace KafeSimulator
             return btn;
         }
 
-
-        //Kuyruktan kasaya müşteri al
         void SiradanMusteriAl()
         {
             if (flpSira.Controls.Count > 0)
@@ -262,7 +260,7 @@ namespace KafeSimulator
         }
         private void tmrMusteriEkle_Tick(object sender, EventArgs e)
         {
-            tmrMusteriEkle.Interval = rnd.Next(5, 10) * 1000;
+            tmrMusteriEkle.Interval = rnd.Next(4,8) * 1000;
             flpSira.Controls.Add(MusteriOlustur(musteriSayaci++));
         }
 
@@ -276,20 +274,6 @@ namespace KafeSimulator
         {
             kasaStartTime2 = DateTime.Now;
             tmrKasa2.Start();
-        }
-
-        private void KafeForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            var newXLFile = WorkBook.Create(ExcelFileFormat.XLSX);
-            var newWorkSheet = newXLFile.CreateWorkSheet("data");
-
-            for (int i = 1; i <= tumSiparisler.Count; i++)
-            {
-                newWorkSheet["A" + i].Value = tumSiparisler[i-1].Ad;
-                newWorkSheet["B" + i].Value = tumSiparisler[i-1].HazirlanmaSuresi;
-            }
-
-            newXLFile.SaveAs("data.xlsx");
         }
 
         private void pnlSiralar_Paint(object sender, PaintEventArgs e)
@@ -339,6 +323,20 @@ namespace KafeSimulator
             }
         }
         #endregion
+
+        private void KafeForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            var newXLFile = WorkBook.Create(ExcelFileFormat.XLSX);
+            var newWorkSheet = newXLFile.CreateWorkSheet("data");
+
+            for (int i = 1; i <= tumSiparisler.Count; i++)
+            {
+                newWorkSheet["A" + i].Value = tumSiparisler[i - 1].Ad;
+                newWorkSheet["B" + i].Value = tumSiparisler[i - 1].HazirlanmaSuresi;
+            }
+
+            newXLFile.SaveAs("data.xlsx");
+        }
 
     }
 }
