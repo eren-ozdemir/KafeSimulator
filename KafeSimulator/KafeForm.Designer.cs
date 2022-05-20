@@ -42,6 +42,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlSiralar = new System.Windows.Forms.Panel();
+            this.dgwBekleyenSiparisler = new System.Windows.Forms.DataGridView();
             this.flpSiparisBeklemeAlani = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlSira3 = new System.Windows.Forms.Panel();
             this.flpSira = new System.Windows.Forms.FlowLayoutPanel();
@@ -54,8 +55,11 @@
             this.tmrCalisan1 = new System.Windows.Forms.Timer(this.components);
             this.tmrCalisan2 = new System.Windows.Forms.Timer(this.components);
             this.tmrSiparisKontrol = new System.Windows.Forms.Timer(this.components);
+            this.dgwTumSiparisler = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.pnlSiralar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwBekleyenSiparisler)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwTumSiparisler)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -175,6 +179,8 @@
             // 
             // pnlSiralar
             // 
+            this.pnlSiralar.Controls.Add(this.dgwTumSiparisler);
+            this.pnlSiralar.Controls.Add(this.dgwBekleyenSiparisler);
             this.pnlSiralar.Controls.Add(this.label5);
             this.pnlSiralar.Controls.Add(this.flpSiparisBeklemeAlani);
             this.pnlSiralar.Controls.Add(this.pnlSira3);
@@ -190,6 +196,14 @@
             this.pnlSiralar.Name = "pnlSiralar";
             this.pnlSiralar.Size = new System.Drawing.Size(1198, 420);
             this.pnlSiralar.TabIndex = 1;
+            // 
+            // dgwBekleyenSiparisler
+            // 
+            this.dgwBekleyenSiparisler.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwBekleyenSiparisler.Location = new System.Drawing.Point(3, 155);
+            this.dgwBekleyenSiparisler.Name = "dgwBekleyenSiparisler";
+            this.dgwBekleyenSiparisler.Size = new System.Drawing.Size(298, 169);
+            this.dgwBekleyenSiparisler.TabIndex = 8;
             // 
             // flpSiparisBeklemeAlani
             // 
@@ -271,6 +285,14 @@
             this.tmrSiparisKontrol.Interval = 1000;
             this.tmrSiparisKontrol.Tick += new System.EventHandler(this.tmrSiparisKontrol_Tick);
             // 
+            // dgwTumSiparisler
+            // 
+            this.dgwTumSiparisler.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwTumSiparisler.Location = new System.Drawing.Point(331, 155);
+            this.dgwTumSiparisler.Name = "dgwTumSiparisler";
+            this.dgwTumSiparisler.Size = new System.Drawing.Size(249, 169);
+            this.dgwTumSiparisler.TabIndex = 8;
+            // 
             // KafeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -286,6 +308,8 @@
             this.panel1.PerformLayout();
             this.pnlSiralar.ResumeLayout(false);
             this.pnlSiralar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwBekleyenSiparisler)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwTumSiparisler)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -317,6 +341,8 @@
         private System.Windows.Forms.Timer tmrCalisan1;
         private System.Windows.Forms.Timer tmrCalisan2;
         private System.Windows.Forms.Timer tmrSiparisKontrol;
+        private System.Windows.Forms.DataGridView dgwBekleyenSiparisler;
+        private System.Windows.Forms.DataGridView dgwTumSiparisler;
     }
 }
 

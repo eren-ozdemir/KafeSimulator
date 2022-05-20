@@ -17,7 +17,9 @@ namespace KafeSimulator
         int siparisSayaci = 1;
         Size siparisliBoyut = new Size(150, 90);
         Size siparissizBoyut = new Size(90, 35);
-        List<Siparis> aktifSiparisler = new List<Siparis>();
+        
+        BindingList<Siparis> bekleyenSiparisler = new BindingList<Siparis>();
+        BindingList<Siparis> tumSiparisler = new BindingList<Siparis>();
         List<Siparis> icecekler = new List<Siparis>()
         {
             new Siparis(){Ad = "Caffè Latte", HazirlanmaSuresi = 10},
@@ -44,6 +46,8 @@ namespace KafeSimulator
             tmrMusteriEkle.Start();
             tmrSiparisKontrol.Start();
             CalisanlaraSiparisVer();
+            dgwBekleyenSiparisler.DataSource = bekleyenSiparisler;
+            dgwTumSiparisler.DataSource = tumSiparisler;
         }
 
         Panel CalisanOlustur(byte num)
@@ -99,33 +103,34 @@ namespace KafeSimulator
         void CalisandakiSiparisiSil(Panel pnl)
         {
             pnl.Size = siparissizBoyut;
+            ProgressBar pBar = pnl.Controls["pBar"+(byte)pnl.Tag] as ProgressBar;
+            Label lbl = pnl.Controls["lblCalisan"+(byte)pnl.Tag] as Label;
+            pBar.Value = 0;
+            pBar.Visible = false;
+            lbl.Visible = false;
             pnl.Parent = flpCalisanBeklemeAlani;
-
-            foreach (Control item in pnl.Controls)
-            {
-                if (!(item is Button))
-                    item.Visible = false;
-            }
         }
 
         void SiparisiHavuzaEkle(Panel pnlSira)
         {
-            if (flpCalisanBeklemeAlani.Controls.Count > 0)
-            {
-                Button btnMusteri = pnlSira.Controls[0] as Button;
-                Siparis siparis = (btnMusteri.Tag as Musteri).Siparis;
-                aktifSiparisler.Add(siparis);
-                btnMusteri.Parent = flpSiparisBeklemeAlani;
-            }
+            Button btnMusteri = pnlSira.Controls[0] as Button;
+            Siparis siparis = (btnMusteri.Tag as Musteri).Siparis;
+            bekleyenSiparisler.Add(siparis);
+            tumSiparisler.Add(siparis);
+        }
+
+        void MusteriyiBeklemeAlaninaAl(Button musteri)
+        {
+            musteri.Parent = flpSiparisBeklemeAlani;
         }
 
         void CalisanlaraSiparisVer()
         {
-            if (aktifSiparisler.Count > 0 && flpCalisanBeklemeAlani.Controls.Count > 0)
+            if (bekleyenSiparisler.Count > 0 && flpCalisanBeklemeAlani.Controls.Count > 0)
             {
                 Panel calisan = (Panel)flpCalisanBeklemeAlani.Controls[0];
-                CalisanaSiparisEkle(calisan, aktifSiparisler[0]);
-                aktifSiparisler.RemoveAt(0);
+                CalisanaSiparisEkle(calisan, bekleyenSiparisler[0]);
+                bekleyenSiparisler.RemoveAt(0);
             }
         }
 
@@ -232,6 +237,8 @@ namespace KafeSimulator
             return btn;
         }
 
+
+        //Kuyruktan kasaya müşteri al
         void SiradanMusteriAl()
         {
             if (flpSira.Controls.Count > 0)
@@ -278,11 +285,9 @@ namespace KafeSimulator
             TimeSpan ts = DateTime.Now - kasaStartTime1;
             if (ts.Seconds >= tmrKasa1.Interval / 1000)
             {
-                if (flpCalisanBeklemeAlani.Controls.Count > 0)
-                {
-                    SiparisiHavuzaEkle(pnlSira1);
-                    SiradanMusteriAl();
-                }
+                SiparisiHavuzaEkle(pnlSira1);
+                MusteriyiBeklemeAlaninaAl(pnlSira1.Controls[0] as Button);
+                SiradanMusteriAl();
                 tmrKasa1.Stop();
             }
         }
@@ -292,11 +297,9 @@ namespace KafeSimulator
             TimeSpan ts = DateTime.Now - kasaStartTime2;
             if (ts.Seconds >= tmrKasa2.Interval / 1000)
             {
-                if (flpCalisanBeklemeAlani.Controls.Count > 0)
-                {
-                    SiparisiHavuzaEkle(pnlSira2);
-                    SiradanMusteriAl();
-                }
+                SiparisiHavuzaEkle(pnlSira2);
+                MusteriyiBeklemeAlaninaAl(pnlSira2.Controls[0] as Button);
+                SiradanMusteriAl();
                 tmrKasa2.Stop();
             }
         }
@@ -306,11 +309,9 @@ namespace KafeSimulator
             TimeSpan ts = DateTime.Now - kasaStartTime3;
             if (ts.Seconds >= tmrKasa3.Interval / 1000)
             {
-                if (flpCalisanBeklemeAlani.Controls.Count > 0)
-                {
-                    SiparisiHavuzaEkle(pnlSira3);
-                    SiradanMusteriAl();
-                }
+                SiparisiHavuzaEkle(pnlSira3);
+                MusteriyiBeklemeAlaninaAl(pnlSira3.Controls[0] as Button);
+                SiradanMusteriAl();
                 tmrKasa3.Stop();
             }
         }
