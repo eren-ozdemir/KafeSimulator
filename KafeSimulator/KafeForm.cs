@@ -50,6 +50,23 @@ namespace KafeSimulator
             flpKasa3.Tag = pnlSira3;
         }
 
+       
+        private void SiparisAlindiMetot(object sender, EventArgs e)
+        {
+            Calisan calisan = (Calisan)sender;
+            Panel pnlSira = calisan.IlgilendigiSira;
+            if (pnlSira != null)
+            {
+                Button btnMusteri = pnlSira.Controls[0] as Button;
+                SiparisiHavuzaEkle(calisan.IlgilendigiSira);
+                btnMusteri.Parent = flpSiparisBeklemeAlani;
+                SiradanMusteriAl();
+            }
+        }
+
+        
+
+        #region Çalışan Metotlari
         void CalisanYonetim()
         {
             CalisanManager.CalisanSayisi = 5;
@@ -126,19 +143,6 @@ namespace KafeSimulator
             return calisan;
         }
 
-        private void SiparisAlindiMetot(object sender, EventArgs e)
-        {
-            Calisan calisan = (Calisan)sender;
-            Panel pnlSira = calisan.IlgilendigiSira;
-            if (pnlSira != null)
-            {
-                Button btnMusteri = pnlSira.Controls[0] as Button;
-                SiparisiHavuzaEkle(calisan.IlgilendigiSira);
-                btnMusteri.Parent = flpSiparisBeklemeAlani;
-                SiradanMusteriAl();
-            }
-        }
-
         private void CalisanKonumuDegistir(object sender, EventArgs e)
         {
             Panel pnlCalisan = (Panel)((Button)sender).Parent;
@@ -194,6 +198,14 @@ namespace KafeSimulator
             tumSiparisler.Add(siparis);
         }
 
+        void SiparisHazirlandiMetot(object sender, EventArgs e)
+        {
+            Calisan calisan = sender as Calisan;
+            calisan.Panel.Parent = flpCalisanBeklemeAlani;
+            SiparisiTeslimEt(calisan.Siparis);
+        }
+        #endregion
+
         void SiparisiTeslimEt(Siparis siparis)
         {
             foreach (Button btnMusteri in flpSiparisBeklemeAlani.Controls)
@@ -211,17 +223,10 @@ namespace KafeSimulator
             calisan.SiparisHazirla();
         }
 
-        void SiparisHazirlandiMetot(object sender, EventArgs e)
-        {
-            Calisan calisan = sender as Calisan;
-            calisan.Panel.Parent = flpCalisanBeklemeAlani;
-            SiparisiTeslimEt(calisan.Siparis);
-        }
-
         private void tmrSiparisKontrol_Tick(object sender, EventArgs e)
         {
             CalisanlaraSiparisVer();
-            SiparisAlKontrol();
+            //SiparisAlKontrol();
         }
 
         private void SiparisAlKontrol()
@@ -355,8 +360,14 @@ namespace KafeSimulator
             var newXLFile = WorkBook.Create(ExcelFileFormat.XLSX);
             var newWorkSheet = newXLFile.CreateWorkSheet("data");
 
-        private void flpCalisanBeklemeAlani_ControlAdded(object sender, ControlEventArgs e)
-        {
+            for (int i = 1; i <= tumSiparisler.Count; i++)
+            {
+                newWorkSheet["A" + i].Value = tumSiparisler[i - 1].Ad;
+                newWorkSheet["B" + i].Value = tumSiparisler[i - 1].HazirlanmaSuresi;
+            }
+
+            newXLFile.SaveAs("data.xlsx");
+            MessageBox.Show("Sipariş geçmişi kaydedildi.");
 
         }
     }
