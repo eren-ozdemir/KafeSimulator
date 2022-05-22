@@ -36,12 +36,17 @@ namespace KafeSimulator
         {
             InitializeComponent();
             CalisanYonetim();
+            CalisanlaraSiparisVer();
+            KasaSiraEslestir();
             flpSira.Controls.Add(MusteriOlustur(musteriSayaci++));
             tmrMusteriEkle.Start();
             tmrSiparisKontrol.Start();
-            CalisanlaraSiparisVer();
             dgwBekleyenSiparisler.DataSource = bekleyenSiparisler;
             dgwTumSiparisler.DataSource = tumSiparisler;
+        }
+
+        private void KasaSiraEslestir()
+        {
             pnlSira1.Tag = flpKasa1;
             flpKasa1.Tag = pnlSira1;
             pnlSira2.Tag = flpKasa2;
@@ -49,22 +54,6 @@ namespace KafeSimulator
             pnlSira3.Tag = flpKasa3;
             flpKasa3.Tag = pnlSira3;
         }
-
-       
-        private void SiparisAlindiMetot(object sender, EventArgs e)
-        {
-            Calisan calisan = (Calisan)sender;
-            Panel pnlSira = calisan.IlgilendigiSira;
-            if (pnlSira != null)
-            {
-                Button btnMusteri = pnlSira.Controls[0] as Button;
-                SiparisiHavuzaEkle(calisan.IlgilendigiSira);
-                btnMusteri.Parent = flpSiparisBeklemeAlani;
-                SiradanMusteriAl();
-            }
-        }
-
-        
 
         #region Çalışan Metotlari
         void CalisanYonetim()
@@ -197,14 +186,24 @@ namespace KafeSimulator
             bekleyenSiparisler.Add(siparis);
             tumSiparisler.Add(siparis);
         }
-
+        private void SiparisAlindiMetot(object sender, EventArgs e)
+        {
+            Calisan calisan = (Calisan)sender;
+            Panel pnlSira = calisan.IlgilendigiSira;
+            if (pnlSira != null)
+            {
+                Button btnMusteri = pnlSira.Controls[0] as Button;
+                SiparisiHavuzaEkle(calisan.IlgilendigiSira);
+                btnMusteri.Parent = flpSiparisBeklemeAlani;
+                SiradanMusteriAl();
+            }
+        }
         void SiparisHazirlandiMetot(object sender, EventArgs e)
         {
             Calisan calisan = sender as Calisan;
             calisan.Panel.Parent = flpCalisanBeklemeAlani;
             SiparisiTeslimEt(calisan.Siparis);
         }
-        #endregion
 
         void SiparisiTeslimEt(Siparis siparis)
         {
@@ -226,10 +225,21 @@ namespace KafeSimulator
         private void tmrSiparisKontrol_Tick(object sender, EventArgs e)
         {
             CalisanlaraSiparisVer();
-            //SiparisAlKontrol();
+            SiparisAlKontrol();
         }
 
-        private void SiparisAlKontrol()
+        void CalisanlaraSiparisVer()
+        {
+            if (bekleyenSiparisler.Count > 0 && flpCalisanBeklemeAlani.Controls.Count > 0)
+            {
+                Panel pnlCalisan = (Panel)flpCalisanBeklemeAlani.Controls[0];
+                Calisan calisan = (Calisan)pnlCalisan.Tag;
+                CalisanaSiparisEkle(calisan, bekleyenSiparisler[0]);
+                bekleyenSiparisler.RemoveAt(0);
+            }
+        }
+
+        void SiparisAlKontrol()
         {
             if (flpKasa1.Controls.Count > 0 && pnlSira1.Controls.Count > 0)
             {
@@ -253,16 +263,7 @@ namespace KafeSimulator
             }
         }
 
-        void CalisanlaraSiparisVer()
-        {
-            if (bekleyenSiparisler.Count > 0 && flpCalisanBeklemeAlani.Controls.Count > 0)
-            {
-                Panel pnlCalisan = (Panel)flpCalisanBeklemeAlani.Controls[0];
-                Calisan calisan = (Calisan)pnlCalisan.Tag;
-                CalisanaSiparisEkle(calisan, bekleyenSiparisler[0]);
-                bekleyenSiparisler.RemoveAt(0);
-            }
-        }
+        #endregion
 
         #region Müsteri sıra yönetimi
         Button MusteriOlustur(int num)
