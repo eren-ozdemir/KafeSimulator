@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KafeForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.flpKasa3 = new System.Windows.Forms.FlowLayoutPanel();
@@ -92,7 +92,7 @@
             // 
             // flpKasa3
             // 
-            this.flpKasa3.Location = new System.Drawing.Point(795, 233);
+            this.flpKasa3.Location = new System.Drawing.Point(794, 233);
             this.flpKasa3.Name = "flpKasa3";
             this.flpKasa3.Size = new System.Drawing.Size(153, 110);
             this.flpKasa3.TabIndex = 9;
@@ -100,7 +100,7 @@
             // 
             // flpKasa2
             // 
-            this.flpKasa2.Location = new System.Drawing.Point(618, 233);
+            this.flpKasa2.Location = new System.Drawing.Point(609, 233);
             this.flpKasa2.Name = "flpKasa2";
             this.flpKasa2.Size = new System.Drawing.Size(153, 110);
             this.flpKasa2.TabIndex = 9;
@@ -132,14 +132,14 @@
             this.dgwTumSiparisler.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgwTumSiparisler.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(37)))), ((int)(((byte)(25)))));
             this.dgwTumSiparisler.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(56)))), ((int)(((byte)(19)))));
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(177)))), ((int)(((byte)(157)))));
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(56)))), ((int)(((byte)(19)))));
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(177)))), ((int)(((byte)(157)))));
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgwTumSiparisler.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(56)))), ((int)(((byte)(19)))));
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(177)))), ((int)(((byte)(157)))));
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(56)))), ((int)(((byte)(19)))));
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(177)))), ((int)(((byte)(157)))));
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgwTumSiparisler.DefaultCellStyle = dataGridViewCellStyle17;
             this.dgwTumSiparisler.Location = new System.Drawing.Point(687, 32);
             this.dgwTumSiparisler.Name = "dgwTumSiparisler";
             this.dgwTumSiparisler.ReadOnly = true;
@@ -180,7 +180,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(177)))), ((int)(((byte)(157)))));
-            this.label6.Location = new System.Drawing.Point(1129, 11);
+            this.label6.Location = new System.Drawing.Point(1130, 11);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(64, 20);
             this.label6.TabIndex = 0;
@@ -193,14 +193,14 @@
             this.dgwBekleyenSiparisler.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgwBekleyenSiparisler.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(37)))), ((int)(((byte)(25)))));
             this.dgwBekleyenSiparisler.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(56)))), ((int)(((byte)(19)))));
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(177)))), ((int)(((byte)(157)))));
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(56)))), ((int)(((byte)(19)))));
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(177)))), ((int)(((byte)(157)))));
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgwBekleyenSiparisler.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(56)))), ((int)(((byte)(19)))));
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(177)))), ((int)(((byte)(157)))));
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(56)))), ((int)(((byte)(19)))));
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(177)))), ((int)(((byte)(157)))));
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgwBekleyenSiparisler.DefaultCellStyle = dataGridViewCellStyle18;
             this.dgwBekleyenSiparisler.Location = new System.Drawing.Point(408, 32);
             this.dgwBekleyenSiparisler.Name = "dgwBekleyenSiparisler";
             this.dgwBekleyenSiparisler.ReadOnly = true;
@@ -210,13 +210,16 @@
             // 
             // flpMutfak
             // 
+            this.flpMutfak.AutoScroll = true;
             this.flpMutfak.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(56)))), ((int)(((byte)(19)))));
             this.flpMutfak.Dock = System.Windows.Forms.DockStyle.Right;
             this.flpMutfak.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flpMutfak.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(177)))), ((int)(((byte)(157)))));
-            this.flpMutfak.Location = new System.Drawing.Point(1199, 0);
+            this.flpMutfak.Location = new System.Drawing.Point(1196, 0);
+            this.flpMutfak.MaximumSize = new System.Drawing.Size(310, 349);
+            this.flpMutfak.MinimumSize = new System.Drawing.Size(154, 349);
             this.flpMutfak.Name = "flpMutfak";
-            this.flpMutfak.Size = new System.Drawing.Size(154, 349);
+            this.flpMutfak.Size = new System.Drawing.Size(157, 349);
             this.flpMutfak.TabIndex = 2;
             this.flpMutfak.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.flpMutfak_ControlAdded);
             // 
@@ -226,8 +229,10 @@
             this.flpCalisanBeklemeAlani.Dock = System.Windows.Forms.DockStyle.Left;
             this.flpCalisanBeklemeAlani.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(177)))), ((int)(((byte)(157)))));
             this.flpCalisanBeklemeAlani.Location = new System.Drawing.Point(0, 0);
+            this.flpCalisanBeklemeAlani.MaximumSize = new System.Drawing.Size(310, 349);
+            this.flpCalisanBeklemeAlani.MinimumSize = new System.Drawing.Size(154, 349);
             this.flpCalisanBeklemeAlani.Name = "flpCalisanBeklemeAlani";
-            this.flpCalisanBeklemeAlani.Size = new System.Drawing.Size(154, 349);
+            this.flpCalisanBeklemeAlani.Size = new System.Drawing.Size(157, 349);
             this.flpCalisanBeklemeAlani.TabIndex = 1;
             // 
             // label3
@@ -260,7 +265,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(177)))), ((int)(((byte)(157)))));
-            this.label2.Location = new System.Drawing.Point(665, 210);
+            this.label2.Location = new System.Drawing.Point(656, 210);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 20);
             this.label2.TabIndex = 0;
@@ -268,7 +273,6 @@
             // 
             // label5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(177)))), ((int)(((byte)(157)))));
@@ -300,9 +304,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(532, 139);
+            this.pictureBox1.Location = new System.Drawing.Point(532, 129);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(326, 248);
+            this.pictureBox1.Size = new System.Drawing.Size(326, 190);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
@@ -315,9 +319,9 @@
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(177)))), ((int)(((byte)(157)))));
             this.label7.Location = new System.Drawing.Point(159, 347);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 20);
+            this.label7.Size = new System.Drawing.Size(160, 20);
             this.label7.TabIndex = 0;
-            this.label7.Text = "Kuyruk";
+            this.label7.Text = "Sıra Bekleme Alanı";
             // 
             // flpSiparisBeklemeAlani
             // 
@@ -327,15 +331,17 @@
             this.flpSiparisBeklemeAlani.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flpSiparisBeklemeAlani.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.flpSiparisBeklemeAlani.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(177)))), ((int)(((byte)(157)))));
-            this.flpSiparisBeklemeAlani.Location = new System.Drawing.Point(1199, 0);
+            this.flpSiparisBeklemeAlani.Location = new System.Drawing.Point(1196, 0);
+            this.flpSiparisBeklemeAlani.MaximumSize = new System.Drawing.Size(310, 374);
+            this.flpSiparisBeklemeAlani.MinimumSize = new System.Drawing.Size(154, 374);
             this.flpSiparisBeklemeAlani.Name = "flpSiparisBeklemeAlani";
-            this.flpSiparisBeklemeAlani.Size = new System.Drawing.Size(154, 374);
+            this.flpSiparisBeklemeAlani.Size = new System.Drawing.Size(157, 374);
             this.flpSiparisBeklemeAlani.TabIndex = 7;
             // 
             // pnlSira3
             // 
             this.pnlSira3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pnlSira3.Location = new System.Drawing.Point(795, 15);
+            this.pnlSira3.Location = new System.Drawing.Point(794, 15);
             this.pnlSira3.Margin = new System.Windows.Forms.Padding(0);
             this.pnlSira3.Name = "pnlSira3";
             this.pnlSira3.Size = new System.Drawing.Size(153, 93);
@@ -347,18 +353,21 @@
             this.flpSira.AutoScroll = true;
             this.flpSira.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(98)))), ((int)(((byte)(57)))));
             this.flpSira.Dock = System.Windows.Forms.DockStyle.Left;
+            this.flpSira.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flpSira.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.flpSira.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(177)))), ((int)(((byte)(157)))));
             this.flpSira.Location = new System.Drawing.Point(0, 0);
+            this.flpSira.MaximumSize = new System.Drawing.Size(310, 374);
+            this.flpSira.MinimumSize = new System.Drawing.Size(154, 374);
             this.flpSira.Name = "flpSira";
-            this.flpSira.Size = new System.Drawing.Size(153, 374);
+            this.flpSira.Size = new System.Drawing.Size(157, 374);
             this.flpSira.TabIndex = 5;
             this.flpSira.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.flpSira_ControlAdded);
             // 
             // pnlSira2
             // 
             this.pnlSira2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pnlSira2.Location = new System.Drawing.Point(618, 15);
+            this.pnlSira2.Location = new System.Drawing.Point(609, 15);
             this.pnlSira2.Margin = new System.Windows.Forms.Padding(0);
             this.pnlSira2.Name = "pnlSira2";
             this.pnlSira2.Size = new System.Drawing.Size(153, 93);
@@ -397,6 +406,7 @@
             this.Name = "KafeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kafe";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.KafeForm_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwTumSiparisler)).EndInit();

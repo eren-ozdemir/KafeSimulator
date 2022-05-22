@@ -12,6 +12,7 @@ namespace KafeSimulator
     {
         public event EventHandler SiparisHazirlandi;
         public event EventHandler SiparisAlindi;
+        private byte _gecenSaniye;
         public byte Id { get; set; }
         public Timer Timer { get; set; } = new Timer();
         public DateTime TimerStartTime { get; set; }
@@ -31,20 +32,38 @@ namespace KafeSimulator
             get { return _siparis; }
             set
             {
-                if (value == null)
-                {
-                    SiparisiTemizle();
-                    _siparis = value;
-                }
-                else
-                {
-                    _siparis = value;
-                    SiparisHazirla();
-                }
+                _siparis = value;
             }
         }
 
-        public Konum Konum { get; set; }
+        private Konum _konum;
+
+        public Konum Konum
+        {
+            get { return _konum; }
+            set
+            {
+                if (_konum != value)
+                {
+                    _konum = value;
+                    Timer.Stop();
+                    if (value == Konum.Mutfak)
+                    {
+                        Timer.Tick += SiparisHazirlamaTimer_Tick;
+                        Timer.Tick -= SiparisAlmaTimer_Tick;
+                    }
+                    else if (value == Konum.Kasa)
+                    {
+                        Timer.Tick -= SiparisHazirlamaTimer_Tick;
+                        Timer.Tick += SiparisAlmaTimer_Tick;
+
+                    }
+                }
+                if (Panel != null)
+                    Resetle();
+            }
+        }
+
 
         public void SiparisAl()
         {
@@ -52,60 +71,58 @@ namespace KafeSimulator
             ProgressBar.Value = 0;
             ProgressBar.Visible = true;
             Timer.Interval = 1000;
-            TimerStartTime = DateTime.Now;
-            Timer.Tick += SiparisAlmaTimer_Tick;
             Timer.Start();
         }
 
         private void SiparisAlmaTimer_Tick(object sender, EventArgs e)
         {
-            TimeSpan ts = DateTime.Now - TimerStartTime;
-            double yuzde = (double)ts.Seconds / 4 * 100;
-            if (yuzde <= 100)
+            _gecenSaniye++;
+
+            double yuzde = (double)_gecenSaniye / 4 * 100;
+            ProgressBar.Value = (int)yuzde;
+            if (_gecenSaniye == 4)
             {
-                ProgressBar.Value = (int)yuzde;
-                if (yuzde == 100)
-                {
-                    SiparisAlindi?.Invoke(this, EventArgs.Empty);
-                    SiparisiTemizle();
-                    Timer.Tick -= SiparisAlmaTimer_Tick;
-                    Timer.Stop();
-                    ProgressBar.Visible = false;
-                }
+                SiparisAlindi?.Invoke(this, EventArgs.Empty);
+                Resetle();
+                _gecenSaniye = 0;
+                Timer.Stop();
             }
         }
 
-        private void SiparisiTemizle()
+        private void Resetle()
         {
             Panel.Size = _siparissizBoyut;
             Label.Visible = false;
             ProgressBar.Value = 0;
             ProgressBar.Visible = false;
+            _gecenSaniye = 0;
         }
 
         public void SiparisHazirla()
         {
+            Panel.Size = _siparisliBoyut;
+            ProgressBar.Value = 0;
+            ProgressBar.Visible = true;
             Timer.Interval = 1000;
-            Timer.Tick += SiparisHazirlamaTimer_Tick;
-            TimerStartTime = DateTime.Now;
             Timer.Start();
         }
 
         private void SiparisHazirlamaTimer_Tick(object sender, EventArgs e)
         {
-            TimeSpan ts = DateTime.Now - TimerStartTime;
-            double yuzde = (double)ts.Seconds / _siparis.HazirlanmaSuresi * 100;
-            if (yuzde <= 100)
+            _gecenSaniye++;
+            if (Siparis != null)
             {
+                double yuzde = (double)_gecenSaniye / Siparis.HazirlanmaSuresi * 100;
                 ProgressBar.Value = (int)yuzde;
-                if (yuzde == 100)
+
+                if (_gecenSaniye == Siparis.HazirlanmaSuresi)
                 {
                     SiparisHazirlandi?.Invoke(this, EventArgs.Empty);
-                    SiparisiTemizle();
-                    Timer.Tick -= SiparisHazirlamaTimer_Tick;
+                    Resetle();
                     Timer.Stop();
                 }
             }
+
         }
     }
 }

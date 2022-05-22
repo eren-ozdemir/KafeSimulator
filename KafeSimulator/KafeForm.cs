@@ -88,7 +88,7 @@ namespace KafeSimulator
                 Name = "pBar" + num,
                 Size = new Size(siparisliBoyut.Width, 10),
                 Dock = DockStyle.Top,
-                Visible = false
+                Visible = false,
             };
             Label lblSiparis = new Label()
             {
@@ -129,10 +129,14 @@ namespace KafeSimulator
         private void SiparisAlindiMetot(object sender, EventArgs e)
         {
             Calisan calisan = (Calisan)sender;
-            Button btnMusteri = calisan.IlgilendigiSira.Controls[0] as Button;
-            SiparisiHavuzaEkle(calisan.IlgilendigiSira);
-            MusteriyiBeklemeAlaninaAl(btnMusteri);
-            SiradanMusteriAl();
+            Panel pnlSira = calisan.IlgilendigiSira;
+            if (pnlSira != null)
+            {
+                Button btnMusteri = pnlSira.Controls[0] as Button;
+                SiparisiHavuzaEkle(calisan.IlgilendigiSira);
+                btnMusteri.Parent = flpSiparisBeklemeAlani;
+                SiradanMusteriAl();
+            }
         }
 
         private void CalisanKonumuDegistir(object sender, EventArgs e)
@@ -190,11 +194,6 @@ namespace KafeSimulator
             tumSiparisler.Add(siparis);
         }
 
-        void MusteriyiBeklemeAlaninaAl(Button musteri)
-        {
-            musteri.Parent = flpSiparisBeklemeAlani;
-        }
-
         void SiparisiTeslimEt(Siparis siparis)
         {
             foreach (Button btnMusteri in flpSiparisBeklemeAlani.Controls)
@@ -249,7 +248,6 @@ namespace KafeSimulator
             }
         }
 
-        //Bekleme alanındaki çalışanı siparişe yönlendirme
         void CalisanlaraSiparisVer()
         {
             if (bekleyenSiparisler.Count > 0 && flpCalisanBeklemeAlani.Controls.Count > 0)
@@ -280,7 +278,6 @@ namespace KafeSimulator
             return btn;
         }
 
-        //Kuyruktan sıraya müşteri alma
         void SiradanMusteriAl()
         {
             if (flpSira.Controls.Count > 0)
@@ -300,7 +297,7 @@ namespace KafeSimulator
         }
         private void tmrMusteriEkle_Tick(object sender, EventArgs e)
         {
-            tmrMusteriEkle.Interval = rnd.Next(4,8) * 1000;
+            tmrMusteriEkle.Interval = rnd.Next(2, 3) * 1000;
             flpSira.Controls.Add(MusteriOlustur(musteriSayaci++));
         }
 
@@ -365,6 +362,8 @@ namespace KafeSimulator
             }
 
             newXLFile.SaveAs("data.xlsx");
+            MessageBox.Show("Sipariş geçmişi kaydedildi.");
         }
+
     }
 }

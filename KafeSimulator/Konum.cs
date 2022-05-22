@@ -8,7 +8,7 @@ namespace KafeSimulator
 {
     public enum Konum
     {
-        Mutfak = 0,
-        Kasa = 1
+        Mutfak = 1,
+        Kasa = 2
     }
 }
