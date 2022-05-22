@@ -6,20 +6,22 @@ using System.Threading.Tasks;
 
 namespace KafeSimulator
 {
-    public class CalisanManager
+    public static class CalisanManager
     {
-        private byte calisanSayisi;
+        private static byte calisanSayisi;
 
-        public byte CalisanSayisi
+        public static byte CalisanSayisi
         {
             get { return calisanSayisi; }
             set
             {
-                if(value <4 || value > 5)
+                if (value < 4 || value > 5)
+                    throw new Exception("Çalışan sayısı 4 ya da 5 olmalı");
+                else 
                     calisanSayisi = value;
             }
         }
 
-
+        public static List<Calisan> CalisanListesi { get; set; } = new List<Calisan>();
     }
 }
