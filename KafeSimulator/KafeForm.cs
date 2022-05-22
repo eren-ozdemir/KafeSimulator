@@ -355,15 +355,9 @@ namespace KafeSimulator
             var newXLFile = WorkBook.Create(ExcelFileFormat.XLSX);
             var newWorkSheet = newXLFile.CreateWorkSheet("data");
 
-            for (int i = 1; i <= tumSiparisler.Count; i++)
-            {
-                newWorkSheet["A" + i].Value = tumSiparisler[i - 1].Ad;
-                newWorkSheet["B" + i].Value = tumSiparisler[i - 1].HazirlanmaSuresi;
-            }
+        private void flpCalisanBeklemeAlani_ControlAdded(object sender, ControlEventArgs e)
+        {
 
-            newXLFile.SaveAs("data.xlsx");
-            MessageBox.Show("Sipariş geçmişi kaydedildi.");
         }
-
     }
 }
